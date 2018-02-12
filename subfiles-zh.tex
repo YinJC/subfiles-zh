@@ -172,8 +172,9 @@ subfiles文档类和宏包需要调用verbatim宏包，该宏包的comment环境
 \end{minted}
 
 宏包的核心。原理是重定义 document 环境，使得子文档的 \mt{\begin} 和 \mt{\end{document}} 容易被导入。
-\mt{\documentclass} 的重定义是类似的，只是有一个要求和一个对 \mt{\subfile} 指令没有意义的可选参数。
 \cprotect\marginnote{\verb|\skip@preamble|}
+\mt{\documentclass} 的重定义是类似的，只是有一个要求和一个对 \mt{\subfile} 指令没有意义的可选参数。
+
 \begin{minted}[xleftmargin=1cm]{tex}
 29 \newcommand{\skip@preamble}{%
 30    \let\document\relax\let\enddocument\relax%
@@ -181,10 +182,10 @@ subfiles文档类和宏包需要调用verbatim宏包，该宏包的comment环境
 32    \renewcommand{\documentclass}[2][subfiles]{}}
 \end{minted}
 
-
+\cprotect\marginnote{\verb|\subfile|}
 注意新的指令 \mt{\subfile} 需要 \mt{skip@preamble} 在一个组。
 在子文档被导入后，对 document 和 \mt{\documentclass} 的改动需要恢复。
-\cprotect\marginnote{\verb|\subfile|}
+
 \begin{minted}[xleftmargin=1cm]{tex}
 33 \newcommand\subfile[1]{\begingroup\skip@preamble\input{#1}\endgroup}
 34 </package>
